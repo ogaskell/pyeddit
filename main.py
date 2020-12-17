@@ -20,7 +20,7 @@ class MainWindow(Gtk.Window):
     class Header(Gtk.HeaderBar):
         def __init__(self):
             Gtk.HeaderBar.__init__(self)
-            self.set_show_close_button(False)
+            self.set_show_close_button(True)
             self.set_title("pyeddit")
 
             self.menu_btn = Gtk.Button.new_from_icon_name("help-contents", 3)
@@ -33,17 +33,11 @@ class MainWindow(Gtk.Window):
             self.search_entry = Gtk.SearchEntry()
             self.search.connect_entry(self.search_entry)
 
-            self.wm_buttons = WmButtons()
-
             self.pack_start(self.logo)
             self.pack_start(self.menu_btn)
 
-            self.pack_end(self.wm_buttons)
             self.pack_end(self.search_entry)
             self.pack_end(self.search)
-
-        def connect_window(self, win):
-            self.wm_buttons.connect_window(win)
 
 
 win = MainWindow()
