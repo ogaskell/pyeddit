@@ -3,7 +3,13 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
-win = Gtk.Window(title="Pyeddit")
+
+class MainWindow(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="pyeddit")
+
+
+win = MainWindow()
 win.connect("destroy", Gtk.main_quit)
 
 if __name__ == "__main__":
