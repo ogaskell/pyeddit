@@ -8,9 +8,12 @@ class MainWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="pyeddit")
 
+        self.layout = Gtk.Grid()
+        self.add(self.layout)
+
         self.title = Gtk.Label(label="pyeddit", halign=Gtk.Align.CENTER)
 
-        self.add(self.title)
+        self.layout.add(self.title)
 
 
 win = MainWindow()
