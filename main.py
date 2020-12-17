@@ -14,7 +14,6 @@ class MainWindow(Gtk.Window):
         self.add(self.layout)
 
         self.headerbar = self.Header()
-        self.headerbar.connect_window(self)
         self.set_titlebar(self.headerbar)
 
     class Header(Gtk.HeaderBar):
