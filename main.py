@@ -18,6 +18,7 @@ class MainWindow(Gtk.Window):
         def __init__(self):
             Gtk.HeaderBar.__init__(self)
             self.set_show_close_button(True)
+            self.set_title("pyeddit")
 
             self.menu_btn = Gtk.Button.new_from_icon_name("help-contents", 3)
 
@@ -27,7 +28,6 @@ class MainWindow(Gtk.Window):
 
             self.pack_start(self.logo)
             self.pack_start(self.menu_btn)
-            self.add(self.title)
 
 
 win = MainWindow()
