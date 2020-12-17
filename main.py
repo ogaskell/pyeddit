@@ -3,6 +3,8 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GdkPixbuf
 
+from widgets import WmButtons
+
 
 class MainWindow(Gtk.Window):
     def __init__(self):
@@ -17,7 +19,7 @@ class MainWindow(Gtk.Window):
     class Header(Gtk.HeaderBar):
         def __init__(self):
             Gtk.HeaderBar.__init__(self)
-            self.set_show_close_button(True)
+            self.set_show_close_button(False)
             self.set_title("pyeddit")
 
             self.menu_btn = Gtk.Button.new_from_icon_name("help-contents", 3)
@@ -26,8 +28,11 @@ class MainWindow(Gtk.Window):
             self.logo_pixbuf = self.logo_pixbuf.scale_simple(24, 24, GdkPixbuf.InterpType.BILINEAR)
             self.logo = Gtk.Image.new_from_pixbuf(self.logo_pixbuf)
 
+            self.wm_buttons = WmButtons()
+
             self.pack_start(self.logo)
             self.pack_start(self.menu_btn)
+            self.pack_end(self.wm_buttons)
 
 
 win = MainWindow()
