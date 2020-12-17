@@ -1,7 +1,7 @@
 import gi
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+from gi.repository import Gtk, GdkPixbuf
 
 
 class MainWindow(Gtk.Window):
@@ -18,11 +18,15 @@ class MainWindow(Gtk.Window):
         def __init__(self):
             Gtk.Box.__init__(self, Gtk.Orientation.HORIZONTAL, 6)
 
-            self.logo = Gtk.Image.new_from_file("./images/On Dark/PNG/Reddit_Mark_OnDark.png")
+            self.logo_pixbuf = GdkPixbuf.Pixbuf.new_from_file("./images/On Dark/PNG/Reddit_Mark_OnDark.png")
+            self.logo_pixbuf = self.logo_pixbuf.scale_simple(50, 50, GdkPixbuf.InterpType.BILINEAR)
+            self.logo = Gtk.Image.new_from_pixbuf(self.logo_pixbuf)
+
             self.title = Gtk.Label(label="pyeddit", halign=Gtk.Align.CENTER)
 
             self.add(self.logo)
             self.add(self.title)
+
 
 win = MainWindow()
 win.connect("destroy", Gtk.main_quit)
