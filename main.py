@@ -18,12 +18,15 @@ class MainWindow(Gtk.Window):
         def __init__(self):
             Gtk.Box.__init__(self, Gtk.Orientation.HORIZONTAL, 6)
 
+            self.menu_btn = Gtk.Button.new_from_icon_name("help-contents", 3)
+
             self.logo_pixbuf = GdkPixbuf.Pixbuf.new_from_file("./images/On Dark/PNG/Reddit_Mark_OnDark.png")
             self.logo_pixbuf = self.logo_pixbuf.scale_simple(50, 50, GdkPixbuf.InterpType.BILINEAR)
             self.logo = Gtk.Image.new_from_pixbuf(self.logo_pixbuf)
 
             self.title = Gtk.Label(label="pyeddit", halign=Gtk.Align.CENTER)
 
+            self.add(self.menu_btn)
             self.add(self.logo)
             self.add(self.title)
 
