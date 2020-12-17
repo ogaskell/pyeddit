@@ -11,23 +11,22 @@ class MainWindow(Gtk.Window):
         self.layout = Gtk.Grid()
         self.add(self.layout)
 
-        self.titlebar = self.Titlebar()
-        self.layout.attach(self.titlebar, 0, 0, 1, 1)
+        self.headerbar = self.Header()
+        self.set_titlebar(self.headerbar)
 
-    class Titlebar(Gtk.Box):
+    class Header(Gtk.HeaderBar):
         def __init__(self):
-            Gtk.Box.__init__(self, Gtk.Orientation.HORIZONTAL, 6)
+            Gtk.HeaderBar.__init__(self)
+            self.set_show_close_button(True)
 
             self.menu_btn = Gtk.Button.new_from_icon_name("help-contents", 3)
 
             self.logo_pixbuf = GdkPixbuf.Pixbuf.new_from_file("./images/On Dark/PNG/Reddit_Mark_OnDark.png")
-            self.logo_pixbuf = self.logo_pixbuf.scale_simple(50, 50, GdkPixbuf.InterpType.BILINEAR)
+            self.logo_pixbuf = self.logo_pixbuf.scale_simple(24, 24, GdkPixbuf.InterpType.BILINEAR)
             self.logo = Gtk.Image.new_from_pixbuf(self.logo_pixbuf)
 
-            self.title = Gtk.Label(label="pyeddit", halign=Gtk.Align.CENTER)
-
-            self.add(self.menu_btn)
-            self.add(self.logo)
+            self.pack_start(self.logo)
+            self.pack_start(self.menu_btn)
             self.add(self.title)
 
 
