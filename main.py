@@ -14,6 +14,7 @@ class MainWindow(Gtk.Window):
         self.add(self.layout)
 
         self.headerbar = self.Header()
+        self.headerbar.connect_window(self)
         self.set_titlebar(self.headerbar)
 
     class Header(Gtk.HeaderBar):
@@ -40,6 +41,9 @@ class MainWindow(Gtk.Window):
             self.pack_end(self.wm_buttons)
             self.pack_end(self.search_entry)
             self.pack_end(self.search)
+
+        def connect_window(self, win):
+            self.wm_buttons.connect_window(win)
 
 
 win = MainWindow()
