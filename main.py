@@ -4,6 +4,7 @@ import gi
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GdkPixbuf, Gdk, Gio
+from widgets import Post
 
 
 class MainWindow(Gtk.Window):
@@ -23,6 +24,9 @@ class MainWindow(Gtk.Window):
 
         self.headerbar = self.Header()
         self.set_titlebar(self.headerbar)
+
+        self.testpost = Post()
+        self.layout.attach(self.testpost, 0, 0, 1, 1)
 
     class Header(Gtk.HeaderBar):
         def __init__(self):
