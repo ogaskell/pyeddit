@@ -10,6 +10,14 @@ class MainWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="pyeddit")
 
+        css_file = Gio.File.new_for_path("main.css")
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_file(css_file)
+        context = Gtk.StyleContext()
+        screen = Gdk.Screen.get_default()
+        context.add_provider_for_screen(screen, css_provider,
+                                        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
         self.layout = Gtk.Grid()
         self.add(self.layout)
 
