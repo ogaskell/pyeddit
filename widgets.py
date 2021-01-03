@@ -58,6 +58,10 @@ class Post(Gtk.Box):
         Gtk.StyleContext.add_class(self.post_title.get_style_context(), "post_title")
         self.pack_start(self.post_title, True, True, 10)
 
+        self.content = self.Content_box(type="img", location="local", url="images/test.jpg")
+        Gtk.StyleContext.add_class(self.content.get_style_context(), "post_content")
+        self.pack_start(self.content, True, True, 10)
+
     class Post_header(Gtk.Box):
         def __init__(self, sub="r/test", user="u/test"):
             self.sub = sub
@@ -73,3 +77,7 @@ class Post(Gtk.Box):
             Gtk.StyleContext.add_class(self.user_label.get_style_context(), "post_user")
             self.pack_start(self.sub_label, False, False, 10)
             self.pack_end(self.user_label, False, False, 10)
+
+    class Content_box(Gtk.Box):
+        def __init__(self, type, location="local", url="images/test.jpg"):
+            Gtk.Box.__init__(self)

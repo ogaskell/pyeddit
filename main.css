@@ -14,3 +14,9 @@
 .post_title {
     font-size: 1.6em;
 }
+
+.post_content {
+    background-color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
