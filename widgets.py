@@ -53,12 +53,12 @@ class Post(Gtk.Box):
         self.set_hexpand(True)
 
         self.subuser_box = self.Post_header()
-        self.pack_start(self.subuser_box, True, True, 10)
+        self.pack_start(self.subuser_box, True, True, 2)
 
         self.post_title = Gtk.Label(label=self.title)
         self.post_title.set_alignment(0, 0)
         Gtk.StyleContext.add_class(self.post_title.get_style_context(), "post_title")
-        self.pack_start(self.post_title, True, True, 10)
+        self.pack_start(self.post_title, True, True, 2)
 
         self.content = self.Content_box(type="img", location="local", url="images/test.jpg")
         Gtk.StyleContext.add_class(self.content.get_style_context(), "post_content")
