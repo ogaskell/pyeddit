@@ -68,6 +68,9 @@ class Post(Gtk.Box):
         self.actions = self.Action_bar()
         self.pack_start(self.actions, True, True, 0)
 
+    def resize(self, width):
+        self.content.resize(width)
+
     class Post_header(Gtk.Box):
         def __init__(self, sub="r/test", user="u/test"):
             self.sub = sub
@@ -93,6 +96,10 @@ class Post(Gtk.Box):
                 self.img = Gtk.Image.new_from_pixbuf(self.img_pixbuf)
 
                 self.add(self.img)
+
+        def resize(self, width):
+            self.img_pixbuf = GdkPixbuf.Pixbuf.new_from_file("./images/test.jpg").scale_simple(width, floor(width * (9 / 16)), GdkPixbuf.InterpType.BILINEAR)
+            self.img.set_from_pixbuf(self.img_pixbuf)
 
     class Action_bar(Gtk.Box):
         def __init__(self):

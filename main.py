@@ -28,9 +28,16 @@ class MainWindow(Gtk.Window):
         self.testpost = Post(testimg=True)
         self.layout.attach(self.testpost, 0, 0, 1, 1)
 
+        self.connect("configure-event", self.resize)
 
         for n in range(3):
             self.layout.attach(Post(title="Post " + str(n + 1)), 0, n + 1, 1, 1)
+
+    def resize(self, x, y):
+        width = self.get_allocation().width
+
+        self.testpost.resize(width)
+
     class Header(Gtk.HeaderBar):
         def __init__(self):
             Gtk.HeaderBar.__init__(self)
