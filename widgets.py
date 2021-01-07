@@ -41,7 +41,7 @@ class WmButtons(Gtk.Box):
 
 
 class Post(Gtk.Box):
-    def __init__(self, sub="r/test", user="u/test", title="Test Post"):
+    def __init__(self, sub="r/test", user="u/test", title="Test Post", testimg=False):
         self.sub = sub
         self.user = user
         self.title = title
@@ -60,7 +60,7 @@ class Post(Gtk.Box):
         Gtk.StyleContext.add_class(self.post_title.get_style_context(), "post_title")
         self.pack_start(self.post_title, True, True, 2)
 
-        self.content = self.Content_box(type="img", location="local", url="images/test.jpg")
+        self.content = self.Content_box(type="img", location="local", url="images/test.jpg", test=testimg)
         Gtk.StyleContext.add_class(self.content.get_style_context(), "post_content")
         self.pack_start(self.content, True, True, 10)
 
@@ -84,8 +84,14 @@ class Post(Gtk.Box):
             self.pack_end(self.user_label, False, False, 10)
 
     class Content_box(Gtk.Box):
-        def __init__(self, type, location="local", url="images/test.jpg"):
+        def __init__(self, type, location="local", url="images/test.jpg", test=False):
             Gtk.Box.__init__(self)
+
+            if test:
+                self.img_pixbuf = GdkPixbuf.Pixbuf.new_from_file("./images/test.jpg")
+                self.img = Gtk.Image.new_from_pixbuf(self.img_pixbuf)
+
+                self.add(self.img)
 
     class Action_bar(Gtk.Box):
         def __init__(self):
