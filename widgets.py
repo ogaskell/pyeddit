@@ -51,6 +51,7 @@ class Post(Gtk.Box):
         Gtk.StyleContext.add_class(self.get_style_context(), "frame")
         Gtk.StyleContext.add_class(self.get_style_context(), "post")
         self.set_hexpand(True)
+        self.set_homogeneous(False)
 
         self.subuser_box = self.Post_header()
         self.pack_start(self.subuser_box, True, True, 2)
