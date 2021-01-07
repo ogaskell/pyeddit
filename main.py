@@ -28,6 +28,9 @@ class MainWindow(Gtk.Window):
         self.testpost = Post(testimg=True)
         self.layout.attach(self.testpost, 0, 0, 1, 1)
 
+
+        for n in range(3):
+            self.layout.attach(Post(title="Post " + str(n + 1)), 0, n + 1, 1, 1)
     class Header(Gtk.HeaderBar):
         def __init__(self):
             Gtk.HeaderBar.__init__(self)
