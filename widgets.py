@@ -100,3 +100,10 @@ class Post(Gtk.Box):
             Gtk.StyleContext.add_class(self.get_style_context(), "frame")
             Gtk.StyleContext.add_class(self.get_style_context(), "post_actions")
             self.set_hexpand(True)
+
+
+class Spacer(Gtk.Box):
+    def __init__(self):
+        Gtk.Box.__init__(self)
+
+        self.set_hexpand(True)
