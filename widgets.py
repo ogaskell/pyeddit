@@ -101,6 +101,47 @@ class Post(Gtk.Box):
             Gtk.StyleContext.add_class(self.get_style_context(), "post_actions")
             self.set_hexpand(True)
 
+            self.upvote = Gtk.Button(label="⬆")
+            self.dnvote = Gtk.Button(label="⬇")
+            self.score = Gtk.Label(label="1")
+
+            Gtk.StyleContext.add_class(self.upvote.get_style_context(), "vote")
+            Gtk.StyleContext.add_class(self.dnvote.get_style_context(), "vote")
+            Gtk.StyleContext.add_class(self.upvote.get_style_context(), "action_button")
+            Gtk.StyleContext.add_class(self.dnvote.get_style_context(), "action_button")
+
+            self.comments = Gtk.Button(label="[com] 0")
+            Gtk.StyleContext.add_class(self.comments.get_style_context(), "comments")
+            Gtk.StyleContext.add_class(self.comments.get_style_context(), "action_button")
+
+            self.award = Gtk.Button(label="* Award")
+            Gtk.StyleContext.add_class(self.award.get_style_context(), "award")
+            Gtk.StyleContext.add_class(self.award.get_style_context(), "action_button")
+
+            self.more = Gtk.Button(label="...")
+            Gtk.StyleContext.add_class(self.more.get_style_context(), "more")
+            Gtk.StyleContext.add_class(self.more.get_style_context(), "action_button")
+
+            self.pack_start(Spacer(), True, True, 0)
+
+            self.pack_start(self.upvote, False, False, 2)
+            self.pack_start(self.score, False, False, 4)
+            self.pack_start(self.dnvote, False, False, 2)
+
+            self.pack_start(Spacer(), True, True, 0)
+
+            self.pack_start(self.comments, False, False, 4)
+
+            self.pack_start(Spacer(), True, True, 0)
+
+            self.pack_start(self.award, False, False, 4)
+
+            self.pack_start(Spacer(), True, True, 0)
+
+            self.pack_start(self.more, False, False, 4)
+
+            self.pack_start(Spacer(), True, True, 0)
+
 
 class Spacer(Gtk.Box):
     def __init__(self):

@@ -34,4 +34,8 @@
 
     padding: 6px;
 }
+
+.action_button {
+    padding: 2px;
+    min-height: 0px;
 }
