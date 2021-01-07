@@ -88,17 +88,20 @@ class Post(Gtk.Box):
             self.pack_end(self.user_label, False, False, 10)
 
     class Content_box(Gtk.Box):
-        def __init__(self, type, location="local", url="images/test.jpg", test=False):
+        def __init__(self, type, location="local", url="images/test.png", test=False):
             Gtk.Box.__init__(self)
 
             if test:
-                self.img_pixbuf = GdkPixbuf.Pixbuf.new_from_file("./images/test.jpg")
+                self.img_pixbuf = GdkPixbuf.Pixbuf.new_from_file("./images/test.png")
                 self.img = Gtk.Image.new_from_pixbuf(self.img_pixbuf)
 
                 self.add(self.img)
 
         def resize(self, width):
-            self.img_pixbuf = GdkPixbuf.Pixbuf.new_from_file("./images/test.jpg").scale_simple(width, floor(width * (9 / 16)), GdkPixbuf.InterpType.BILINEAR)
+            width -= 100
+            print(width)
+            self.img_pixbuf = GdkPixbuf.Pixbuf.new_from_file("./images/test.png")\
+                .scale_simple(width, floor(width * (9 / 16)), GdkPixbuf.InterpType.BILINEAR)
             self.img.set_from_pixbuf(self.img_pixbuf)
 
     class Action_bar(Gtk.Box):

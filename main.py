@@ -38,6 +38,8 @@ class MainWindow(Gtk.Window):
 
         self.testpost.resize(width)
 
+        return False
+
     class Header(Gtk.HeaderBar):
         def __init__(self):
             Gtk.HeaderBar.__init__(self)
