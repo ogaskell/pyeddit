@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+"""PyEddit main program."""
+
 import gi
 
 gi.require_version("Gtk", "3.0")
@@ -8,8 +10,10 @@ from widgets import Post
 
 
 class MainWindow(Gtk.Window):
-    def __init__(self):
-        Gtk.Window.__init__(self, title="pyeddit")
+    """Main window of the application."""
+
+    def __init__(self) -> None:
+        super(MainWindow, self).__init__(self, title="pyeddit")
 
         css_file = Gio.File.new_for_path("main.css")
         css_provider = Gtk.CssProvider()
@@ -33,7 +37,8 @@ class MainWindow(Gtk.Window):
         for n in range(3):
             self.layout.attach(Post(title="Post " + str(n + 1)), 0, n + 1, 1, 1)
 
-    def resize(self, x, y):
+    def resize(self, x: int, y: int) -> bool:
+        """Resize the Window."""
         width = self.get_allocation().width
 
         self.testpost.resize(width)
@@ -41,7 +46,9 @@ class MainWindow(Gtk.Window):
         return False
 
     class Header(Gtk.HeaderBar):
-        def __init__(self):
+        """Class representing the window's header."""
+
+        def __init__(self) -> None:
             Gtk.HeaderBar.__init__(self)
             self.set_show_close_button(True)
             self.set_title("pyeddit")

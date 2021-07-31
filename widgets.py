@@ -1,13 +1,17 @@
+"""Library of custom widgets."""
+
+from math import floor
+
 import gi
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GdkPixbuf
 
-from math import floor
-
 
 class WmButtons(Gtk.Box):
-    def __init__(self):
+    """Buttons for the Window Border (close, maximise etc)."""
+
+    def __init__(self) -> None:
         Gtk.Box.__init__(self, Gtk.Orientation.HORIZONTAL, 1)
 
         self.wm_close = Gtk.Button.new_from_icon_name("window-close-symbolic", 2)
@@ -22,13 +26,18 @@ class WmButtons(Gtk.Box):
 
         self.win = None
 
-    def connect_window(self, win):
+    def connect_window(self, win: Gtk.Window) -> None:
+        """Connect widget to parent window."""
         self.win = win
 
         self.wm_maximise.connect("clicked", lambda x: self.maximise())
         self.wm_minimise.connect("clicked", lambda x: win.iconify())
 
-    def maximise(self):
+    def maximise(self) -> None:
+        """Maximise window.
+
+        Callback for maximise button.
+        """
         if self.win is not None:
             try:
                 if self.win.style_get_property("maximize_initially"):
@@ -41,7 +50,13 @@ class WmButtons(Gtk.Box):
 
 
 class Post(Gtk.Box):
-    def __init__(self, sub="r/test", user="u/test", title="Test Post", testimg=False):
+    """Widget to represent a single Post."""
+
+    def __init__(self,
+                 sub: str = "r/test",
+                 user: str = "u/test",
+                 title: str = "Test Post",
+                 testimg: bool = False) -> None:
         self.sub = sub
         self.user = user
         self.title = title
@@ -68,11 +83,14 @@ class Post(Gtk.Box):
         self.actions = self.Action_bar()
         self.pack_start(self.actions, True, True, 0)
 
-    def resize(self, width):
+    def resize(self, width: int) -> None:
+        """Resize the widget."""
         self.content.resize(width)
 
     class Post_header(Gtk.Box):
-        def __init__(self, sub="r/test", user="u/test"):
+        """Header of the post."""
+
+        def __init__(self, sub: str = "r/test", user: str = "u/test") -> None:
             self.sub = sub
             self.user = user
 
@@ -88,7 +106,13 @@ class Post(Gtk.Box):
             self.pack_end(self.user_label, False, False, 10)
 
     class Content_box(Gtk.Box):
-        def __init__(self, type, location="local", url="images/test.png", test=False):
+        """Widget to hold the post's content (text, image etc)."""
+
+        def __init__(self,
+                     type: int,
+                     location: str = "local",
+                     url: str = "images/test.png",
+                     test: bool = False) -> None:
             Gtk.Box.__init__(self)
 
             if test:
@@ -97,7 +121,8 @@ class Post(Gtk.Box):
 
                 self.add(self.img)
 
-        def resize(self, width):
+        def resize(self, width: int) -> None:
+            """Resize the content."""
             width -= 100
             print(width)
             self.img_pixbuf = GdkPixbuf.Pixbuf.new_from_file("./images/test.png")\
@@ -105,7 +130,9 @@ class Post(Gtk.Box):
             self.img.set_from_pixbuf(self.img_pixbuf)
 
     class Action_bar(Gtk.Box):
-        def __init__(self):
+        """Post's action bar (upvotes, comments etc)."""
+
+        def __init__(self) -> None:
             Gtk.Box.__init__(self)
             Gtk.StyleContext.add_class(self.get_style_context(), "frame")
             Gtk.StyleContext.add_class(self.get_style_context(), "post_actions")
@@ -154,7 +181,12 @@ class Post(Gtk.Box):
 
 
 class Spacer(Gtk.Box):
-    def __init__(self):
+    """Spacer widget.
+
+    Probably bad practice, but works for now.
+    """
+
+    def __init__(self) -> None:
         Gtk.Box.__init__(self)
 
         self.set_hexpand(True)
